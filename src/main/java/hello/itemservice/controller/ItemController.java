@@ -52,4 +52,22 @@ public class ItemController {
 
         return "/read";
     }
+
+    @GetMapping("/modify/{itemId}")
+    public String modifyForm(@PathVariable Long itemId, Model model) {
+
+        Item item = itemRepository.findOne(itemId);
+
+        model.addAttribute("item", item);
+
+        return "/modify";
+    }
+
+    @PostMapping("/modify")
+    public String modify(@ModelAttribute Item item) {
+
+        itemRepository.modify(item);
+
+        return "/read";
+    }
 }
