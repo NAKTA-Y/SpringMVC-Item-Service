@@ -22,7 +22,19 @@ public class ItemRepository {
     }
 
     public void save(Item item) {
+
         item.setId(++sequence);
+
         store.put(item.getId(), item);
+    }
+
+    public Item findOne(Long itemId) {
+
+        return store.get(itemId);
+    }
+
+    public void modify(Item updateItem) {
+
+        store.replace(updateItem.getId(), updateItem);
     }
 }
