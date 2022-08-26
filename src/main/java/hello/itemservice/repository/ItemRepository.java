@@ -3,8 +3,7 @@ package hello.itemservice.repository;
 import hello.itemservice.domain.item.Item;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class ItemRepository {
@@ -18,7 +17,12 @@ public class ItemRepository {
         return instance;
     }
 
-    public Map<Long, Item> findAll() {
-        return store;
+    public List<Item> findAll() {
+        return new ArrayList<>(store.values());
+    }
+
+    public void save(Item item) {
+        item.setId(++sequence);
+        store.put(item.getId(), item);
     }
 }
